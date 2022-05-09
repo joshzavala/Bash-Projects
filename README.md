@@ -1,2 +1,5 @@
 # Bash-Scripts
-Hello and welcome to my bash scripts repo! I have made some scripts that can be tailored to start or stop certain services such as the openssh service or restarting the plasma kde environment to fix some bugs. I also have made a program installation script that will install 10 programs specified for 3 different freshly installed linux distros, Manjaro - XFCE 21.2.6, Ubuntu - 22.04 LTS, and CentOS - Stream 9 Latest.
+Hello and welcome to my bash scripts repo! I have made some scripts that can be tailored for different tasks:
+- Start/Stop SSH - sshstart.sh sshstop.sh
+- Restart Plasma KDE Environment - plasmarestart.sh 
+- Install certain programs on Manjaro, Ubuntu, and CentOS - program_installer.sh
