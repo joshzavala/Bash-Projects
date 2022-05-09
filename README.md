@@ -1,2 +1,2 @@
 # Bash-Scripts
-Hello! These are just some scripts I use on my Linux machine running Manjaro to help with everyday tasks and a Haiku project to showcase my working knowledge of some Bash commands.
+Hello and welcome to my bash scripts repo! I have made some scripts that can be tailored to start or stop certain services such as the openssh service or restarting the plasma kde environment to fix some bugs. I also have made a program installation script that will install 10 programs specified for 3 different freshly installed linux distros, Manjaro - XFCE 21.2.6, Ubuntu - 22.04 LTS, and CentOS - Stream 9 Latest.
