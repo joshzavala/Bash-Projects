@@ -8,7 +8,7 @@
 # 01. remmina - rdp client                              | slack                       | htop - detailed system resources monitor
 # 02. flameshot - screenshot tool                       | flameshot                   | ksnip - screenshot tool
 # 03. spotify - music streaming service                 | spotify                     | thunderbird - mail client
-# 04. librewolf - firefox alternative browser           | gimp - photo editing tool   | gimp
+# 04. chromium - chrome alternative browser             | gimp - photo editing tool   | gimp
 # 05. virt-manager - virtual machine manager            | virt-manager                | virt-manager
 # 06. apache - http web server                          | apache2 - same as apache    | httpd - same as apache
 # 07. slack - team communication tool                   | git - github tool           | git
@@ -27,11 +27,17 @@ do
 
 	if [ $userchoice == "m" ]; # if user chooses Manjaro
 	then
-		echo -e "\nDistribution is Manjaro:\npacman and pamac commands will be used\n" # pacman is the default app manager for Arch distros
+		echo -e "\nDistribution is Manjaro:\npacman and yay commands will be used\n" # pacman is the default app manager for Arch distros
 		
 		echo -e "-----Enabling AUR Support-----"
 		sleep 1
-		sudo sed -Ei '/EnableAUR/s/^#//' /etc/pamac.conf # This command enables AUR support through the terminal by uncommenting #EnableAUR in /etc/pamac.conf
+		yes | sudo sed -Ei '/EnableAUR/s/^#//' /etc/pamac.conf # This command enables AUR support through the terminal by uncommenting #EnableAUR in /etc/pamac.conf
+		echo "-----AUR Enabled-----"
+		sleep 1
+		echo -e "\n-----Installing YAY Support-----"
+		yes | sudo pacman -S yay #Installs yay for installing AUR packages
+		echo "-----YAY installed-----"
+		sleep 1
 		
 		updatetrue=true
 		while [ $updatetrue = true ]
@@ -42,7 +48,9 @@ do
 			then
 				echo "-----Updating Manjaro-----"
 				sleep 1 # pause placeholder for easier following of output commands in a terminal
-				sudo pacman -Syyu # force updating all repos and upgrading apps
+				yes | sudo pacman -Syyu # force updating all repos and upgrading apps
+				echo "-----Update Complete-----"
+				sleep 1
 				updatetrue=false
 				
 			elif [ $update == "n" ]
@@ -59,9 +67,9 @@ do
 		
 		echo -e "\n-----Installing programs-----"
 		sleep 1
-		sudo pacman -Sy remmina flameshot virt-manager apache libreoffice-fresh xournalpp notepadqq
-		sudo pamac install librewolf slack spotify
-		echo -e "\n-----Programs Installed-----\n"
+		yes | sudo pacman -Sy chromium remmina flameshot virt-manager apache libreoffice-fresh xournalpp notepadqq
+		yay -S slack spotify
+		echo -e "-----Programs Installed-----\n"
 		continue=false
 		
 	elif [ $userchoice == "u" ] # if user chooses Ubuntu
