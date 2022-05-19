@@ -29,7 +29,7 @@ do
 	then
 		echo -e "\nDistribution is Manjaro:\npacman and pamac commands will be used\n" # pacman is the default app manager for Arch distros
 		
-		echo -e "\n-----Enabling AUR Support-----"
+		echo -e "-----Enabling AUR Support-----"
 		sleep 1
 		sudo sed -Ei '/EnableAUR/s/^#//' /etc/pamac.conf # This command enables AUR support through the terminal by uncommenting #EnableAUR in /etc/pamac.conf
 		
@@ -59,9 +59,9 @@ do
 		
 		echo -e "\n-----Installing programs-----"
 		sleep 1
-		sudo pacman -S remmina flameshot virt-manager apache libreoffice-fresh xournalpp notepadqq
-		sudo pamac install librewolf slack spotify
-		
+		sudo pacman -Sy remmina flameshot virt-manager apache libreoffice-fresh xournalpp notepadqq
+		sudo pamac -y install librewolf slack spotify
+		echo -e "\n-----Programs Installed-----\n"
 		continue=false
 		
 	elif [ $userchoice == "u" ] # if user chooses Ubuntu
@@ -75,7 +75,7 @@ do
 			
 			if [ $update == "y" ];
 			then
-				echo "-----Updating Manjaro-----"
+				echo "-----Updating Ubuntu-----"
 				sleep 1 # pause placeholder for easier following of output commands in a terminal
 				sudo apt-get -y update && sudo apt-get -y upgrade # force update all repos and upgrade all programs with auto yes for prompts
 				updatetrue=false
@@ -94,25 +94,31 @@ do
 		
 		echo -e "\n-----Installing programs-----"
 		sleep 1
-		sudo apt-get install flameshot spotify gimp virt-manager apache2 git vim xournalpp notepadqq
-		sudo snap install slack 
-		
+		sudo apt-get -y install flameshot gimp virt-manager apache2 git vim xournalpp notepadqq
+		sudo snap -y install slack spotify
+		echo -e "\n-----Programs Installed-----\n"
 		continue=false
 		
 	elif [ $userchoice == "c" ] # if user chooses CentOS
 	then
 		echo -e "\nDistribution is CentOS:\nyum command will be used\n" # rpm is the default app manager for RedHat distros
 		
+		echo "-----Adding Extra Repositories-----"
+		sudo yum -y install epel-release https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+		sudo yum repolist
+		sleep 1
+		
 		updatetrue=true
 		while [ $updatetrue = true ]
 		do
+			echo -e ""
 			read -p "Would you like to update/upgrade your system first? [y|n]: " update
 			
 			if [ $update == "y" ];
 			then
-				echo "-----Updating Manjaro-----"
+				echo -e "-----Updating CentOS-----"
 				sleep 1 # pause placeholder for easier following of output commands in a terminal
-				sudo yum check-update && sudo yum update && sudo yum upgrade
+				sudo yum -y check-update && sudo yum update && sudo yum upgrade
 				updatetrue=false
 				
 			elif [ $update == "n" ]	
@@ -129,8 +135,8 @@ do
 		
 		echo -e "\n-----Installing programs-----"
 		sleep 1
-		sudo yum install htop ksnip thunderbird gimp virt-manager httpd git libreoffice-writer libreoffice-calc gvim
-		
+		sudo yum -y install htop ksnip thunderbird gimp virt-manager httpd git libreoffice-writer libreoffice-calc gvim
+		echo -e "\n-----Programs Installed-----\n"
 		continue=false
 		
 	else
