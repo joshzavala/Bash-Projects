@@ -8,4 +8,4 @@ Bash Scripts Info:
 - Start/Stop SSH - sshstart.sh sshstop.sh
 - Restart Plasma KDE Environment - plasmarestart.sh 
 
-* NOTE * Make sure to enable execute permissions to run the scripts * NOTE *
+ * NOTE * Make sure to enable execute permissions to run the scripts * NOTE *
