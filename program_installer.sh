@@ -60,7 +60,7 @@ do
 		echo -e "\n-----Installing programs-----"
 		sleep 1
 		sudo pacman -Sy remmina flameshot virt-manager apache libreoffice-fresh xournalpp notepadqq
-		sudo pamac -y install librewolf slack spotify
+		sudo pamac install librewolf slack spotify
 		echo -e "\n-----Programs Installed-----\n"
 		continue=false
 		
